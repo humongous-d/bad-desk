@@ -31,7 +31,7 @@ jobs:
     - name: Check gradlew checksum
       run: sha256sum gradlew | grep -w ${{ vars.GRADLEW_CHECKSUM }}
     - name: Check gradlew.bat checksum
-      run: sha256sum gradlew | grep -w ${{ vars.GRADLEW_BAT_CHECKSUM }}
+      run: sha256sum gradlew.bat | grep -w ${{ vars.GRADLEW_BAT_CHECKSUM }}
     - name: Build with Gradle
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
