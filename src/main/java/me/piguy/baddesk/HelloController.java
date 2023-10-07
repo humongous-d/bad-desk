@@ -2,7 +2,9 @@ package me.piguy.baddesk;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import me.router.BadRouter;
+import me.piguy.baddesk.router.BadRouter;
+import me.piguy.baddesk.router_me.MeRouter;
+import me.piguy.baddesk.router_me.Page;
 
 import java.io.IOException;
 
@@ -12,7 +14,8 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
-        BadRouter.to( "secondmain", null);
         welcomeText.setText("Welcome to JavaFX Application!");
+
+        MeRouter.router.load(Page.Dashboard);
     }
 }
