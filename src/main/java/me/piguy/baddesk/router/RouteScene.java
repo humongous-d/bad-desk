@@ -1,4 +1,4 @@
-package me.router;
+package me.piguy.baddesk.router;
 
 public class RouteScene {
     public Object data;

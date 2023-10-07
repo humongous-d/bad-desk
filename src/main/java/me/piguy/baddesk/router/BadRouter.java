@@ -1,4 +1,4 @@
-package me.router;
+package me.piguy.baddesk.router;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
