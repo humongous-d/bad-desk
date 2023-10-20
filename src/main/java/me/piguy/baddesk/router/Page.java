@@ -1,11 +1,12 @@
-package me.piguy.baddesk.router_me;
+package me.piguy.baddesk.router;
 
 import me.piguy.baddesk.Main;
+import me.piguy.baddesk.pages.ViewController;
 
 import java.io.IOException;
 
 /**
- * Navigatable pages for <a href=#{@link}>{@link MeRouter}</a>
+ * Navigatable pages for <a href=#{@link}>{@link Router}</a>
  */
 public enum Page {
 
@@ -13,7 +14,7 @@ public enum Page {
     // EDIT THIS SECTION WHEN ADDING NEW PAGES
 
     Login("login-view.fxml"),
-    Dashboard("hello-new.fxml", "Dashboard");  // title will be "BadDesk | Dashboard"
+    Dashboard("main-view.fxml", "Dashboard");  // title will be "BadDesk | Dashboard"
 
     // ENUM LOGIC
     // NO NEED TO TOUCH THIS PART
@@ -33,12 +34,12 @@ public enum Page {
     }
 
     private void validateFxmlPath() {
-        if (Main.class.getResource(fxml) == null) {
+        if (ViewController.class.getResource(fxml) == null) {
             throw new IllegalArgumentException("File " + fxml + " does not exist in resources folder");
         }
     }
 
     public void navigate() throws IOException {
-        MeRouter.router.load(this);
+        Router.router.load(this);
     }
 }

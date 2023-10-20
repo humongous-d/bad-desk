@@ -1,9 +1,10 @@
-package me.piguy.baddesk.router_me;
+package me.piguy.baddesk.router;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import me.piguy.baddesk.Main;
+import me.piguy.baddesk.pages.ViewController;
 
 import java.io.IOException;
 
@@ -11,8 +12,8 @@ import java.io.IOException;
  * Singleton class which performs as a router to navigate between different pages.<br/>
  * Pages for MeRouter are all part of the <a href=#{@link}>{@link Page}</a> enum.
  */
-public class MeRouter {
-    public static final MeRouter router = new MeRouter();
+public class Router {
+    public static final Router router = new Router();
 
     /**
      * This initiates the singleton class. It is recommended to run this when your program starts up in
@@ -33,7 +34,7 @@ public class MeRouter {
      * @throws IOException if error occurs during loading of the fxml layout
      */
     public void load(Page page) throws IOException {
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource(page.fxml));
+        FXMLLoader loader = new FXMLLoader(ViewController.class.getResource(page.fxml));
         stage.setTitle(page.title);
 
         stage.setScene(new Scene(loader.load()));
