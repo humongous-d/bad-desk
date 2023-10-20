@@ -1,6 +1,7 @@
 package me.piguy.baddesk;
 
 import me.piguy.baddesk.api.ApiAdapter;
+import me.piguy.baddesk.api.TestLocalAPI;
 
 public class ConfigurationManager {
     private static ConfigurationManager config;
@@ -16,6 +17,7 @@ public class ConfigurationManager {
 
     // All the config goes here
     private ConfigurationManager() {
+        api = new TestLocalAPI();
     }
 
 }
