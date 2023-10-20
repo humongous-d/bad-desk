@@ -51,7 +51,7 @@ public class BadRouter {
     public static void loadRoute(RouteScene route) throws IOException {
         getInstance(mainRef, window);
         currentRoute = route;
-        FXMLLoader fxmlLoader = new FXMLLoader(mainRef.getClass().getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(mainRef.getClass().getResource("login-view.fxml"));
         Parent parent = (Parent)fxmlLoader.load();
         window.setTitle(route.windowTitle);
         window.setScene(new Scene(parent));

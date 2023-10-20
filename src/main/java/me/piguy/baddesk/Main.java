@@ -13,18 +13,14 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         MeRouter.initiate(stage);
 
-        // Bind Router to the app and stage
-        BadRouter.bind(this, stage);
-        // Create a few sample routes
-        BadRouter.newRoute("main","hello-view.fxml", "BadDesk");
-        BadRouter.newRoute("secondmain","hello-view.fxml", "BadDesk 2");
-        // Go to main page
-        BadRouter.to( "main", null);
-        // Show our application
+//        // Bind Router to the app and stage
+//        BadRouter.bind(this, stage);
+//        // Create a few sample routes
+//        BadRouter.newRoute("main","login-view.fxml", "BadDesk");
+//        BadRouter.newRoute("secondmain","login-view.fxml", "BadDesk 2");
+//        // Go to main page
+//        BadRouter.to( "main", null);
 
-        // you can do this
-        MeRouter.router.load(Page.Login);
-        // or this ¯\_(ツ)_/¯
         Page.Login.navigate();
 
         stage.show();
