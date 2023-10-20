@@ -12,7 +12,7 @@ public enum Page {
     // ENUM MEMBERS
     // EDIT THIS SECTION WHEN ADDING NEW PAGES
 
-    Login("hello-view.fxml"),
+    Login("login-view.fxml"),
     Dashboard("hello-new.fxml", "Dashboard");  // title will be "BadDesk | Dashboard"
 
     // ENUM LOGIC
