@@ -9,7 +9,7 @@ public class PythonAPI implements ApiAdapter{
 
     @Override
     public String getUrl() {
-        return "http://" + host + ":" + port + "/";
+        return "http://" + host + ":" + port;
     }
 
     @Override
