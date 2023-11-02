@@ -1,4 +1,4 @@
-package me.piguy.baddesk.pages;
+package me.piguy.baddesk.pages            ;
 
 import atlantafx.base.theme.NordDark;
 import atlantafx.base.theme.PrimerLight;
@@ -11,6 +11,8 @@ import me.piguy.baddesk.database.MongoUserDB;
 import me.piguy.baddesk.router.Page;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginViewController implements ViewController {
     Database db;
@@ -31,7 +33,8 @@ public class LoginViewController implements ViewController {
         }
     }
 
-    public void initialize() {
-        db = new MongoUserDB();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 }
