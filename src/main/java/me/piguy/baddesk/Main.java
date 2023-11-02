@@ -3,14 +3,12 @@ package me.piguy.baddesk;
 import atlantafx.base.theme.NordLight;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import me.piguy.baddesk.api.ApiAdapter;
-import me.piguy.baddesk.api.Ctx;
-import me.piguy.baddesk.api.PythonAPI;
-import me.piguy.baddesk.api.Request;
+import me.piguy.baddesk.api.*;
 import me.piguy.baddesk.router.Router;
 import me.piguy.baddesk.router.Page;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class Main extends Application {
     @Override
@@ -19,11 +17,10 @@ public class Main extends Application {
 
         Page.Login.navigate();
 
-        ApiAdapter api = new PythonAPI();
+        PythonAPI api = new PythonAPI();
         api.connect("127.0.0.1", "8000");
-
-        Request request = new Request(api, "/test", "GET");
-        request.Do();
+        api.login("theanimeman", "nonsensejp");
+        api.currentUser();
 
         stage.show();
     }

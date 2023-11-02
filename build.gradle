@@ -36,6 +36,7 @@ javafx {
 
 dependencies {
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
+    implementation("org.json:json:20230618")
     implementation("org.mongodb:mongodb-driver-sync:4.11.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
