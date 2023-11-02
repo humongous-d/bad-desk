@@ -8,7 +8,6 @@ import me.piguy.baddesk.router.Router;
 import me.piguy.baddesk.router.Page;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Main extends Application {
     @Override
@@ -17,7 +16,7 @@ public class Main extends Application {
 
         Page.Login.navigate();
 
-        PythonAPI api = new PythonAPI();
+        ApiAdapter api = new PythonAPI();
         api.connect("127.0.0.1", "8000");
         api.login("theanimeman", "nonsensejp");
         api.currentUser();

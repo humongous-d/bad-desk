@@ -29,8 +29,8 @@ public class PythonAPI implements ApiAdapter {
     @Override
     public boolean login(String username, String password) {
         // Create a request to login
-        Request loginRequest = null;
-        Ctx loginResponse = null;
+        Request loginRequest;
+        Ctx loginResponse;
         try {
             loginRequest = new Request(this, "/token");
             loginResponse = loginRequest.Post()

@@ -10,7 +10,7 @@ public interface ApiAdapter {
     public void disconnect();
 
     // User login
-    public boolean login(String username, String password) throws IOException;
+    public boolean login(String username, String password);
     public boolean resetPassword(String username);
     public String getToken();
 
