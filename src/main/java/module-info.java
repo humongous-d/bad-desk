@@ -4,6 +4,7 @@ module me.piguy.baddesk {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.driver.core;
     requires org.mongodb.bson;
+    requires org.json;
     requires atlantafx.base;
 
     opens me.piguy.baddesk to javafx.fxml;
