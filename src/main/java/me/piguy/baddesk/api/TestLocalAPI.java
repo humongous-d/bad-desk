@@ -10,4 +10,19 @@ public class TestLocalAPI implements ApiAdapter {
     public boolean resetPassword(String username) {
         return false;
     }
+
+
+    // Ignored
+    @Override
+    public String getUrl() {
+        return null;
+    }
+
+    @Override
+    public void connect(String host, String port) {}
+
+    @Override
+    public void disconnect() {
+
+    }
 }
