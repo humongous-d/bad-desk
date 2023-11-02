@@ -36,7 +36,7 @@ public class TestLocalAPI implements ApiAdapter {
     }
 
     @Override
-    public boolean login(String username, String password) throws IOException {
+    public boolean login(String username, String password) {
         return false;
     }
 }
