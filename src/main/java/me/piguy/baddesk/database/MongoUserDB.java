@@ -11,7 +11,8 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class MongoUserDB implements Database {
-    String connectionString = "mongodb+srv://humongous:dick_it_is_dick_lol@cluster0.ucb1vyk.mongodb.net/?retryWrites=true&w=majority";
+    // I totally did not do an oppsie here
+    String connectionString = "";
 
     @Override
     public void get() {
