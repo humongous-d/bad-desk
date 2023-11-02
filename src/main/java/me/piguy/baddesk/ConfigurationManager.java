@@ -2,6 +2,7 @@ package me.piguy.baddesk;
 
 import me.piguy.baddesk.api.ApiAdapter;
 import me.piguy.baddesk.api.TestLocalAPI;
+import me.piguy.baddesk.pages.theme.CupertinoTheme;
 import me.piguy.baddesk.pages.theme.DraculaTheme;
 import me.piguy.baddesk.pages.theme.NordTheme;
 import me.piguy.baddesk.pages.theme.PageTheme;
@@ -40,6 +41,7 @@ public class ConfigurationManager {
 
         addTheme(new NordTheme());
         addTheme(new DraculaTheme());
+        addTheme(new CupertinoTheme());
     }
 
 }

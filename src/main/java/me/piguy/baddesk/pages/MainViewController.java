@@ -43,10 +43,19 @@ public class MainViewController implements ViewController {
     public void initialize(URL location, ResourceBundle resources) {
         this.config = ConfigurationManager.getInstance();
 
+
         HashMap<String, PageTheme> pageThemes = config.getThemes();
 
-        pageThemes.forEach((themeName, themeValue) ->
-                themeSelector.getItems().add(themeName));
+        boolean firstTheme = true;
+        for (PageTheme theme : pageThemes.values()) {
+            String name = theme.getThemeName();
+            themeSelector.getItems().add(name);
+            if (firstTheme) {
+                firstTheme = false;
+            }
+        }
+
+
 
         try {
             attachPane("dashboard-view.fxml", dashboardPane);
