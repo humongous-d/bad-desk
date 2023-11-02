@@ -5,45 +5,55 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.MainViewController">
-    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-          AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.MainViewController">
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <HBox>
             <CheckBox fx:id="darkModeToggle" mnemonicParsing="false" onAction="#toggleDarkMode" text="Dark mode" HBox.hgrow="ALWAYS">
-                <padding>
-                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                </padding>
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin>
             </CheckBox>
+         <ChoiceBox fx:id="themeSelector" value="Nord" onAction="#changeTheme" prefWidth="150.0">
+            <HBox.margin>
+               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </HBox.margin></ChoiceBox>
             <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                 <padding>
-                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0"/>
+                    <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
                 </padding>
                 <Label text="NoDesk" textAlignment="RIGHT">
                     <font>
-                        <Font name="System Bold" size="24.0"/>
+                        <Font name="System Bold" size="24.0" />
                     </font>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </Label>
-                <Label layoutX="10.0" layoutY="10.0" text="Licensed to: The Garden Group" textAlignment="RIGHT"
-                       wrapText="true">
+                <Label layoutX="10.0" layoutY="10.0" text="Licensed to: The Garden Group" textAlignment="RIGHT" wrapText="true">
                     <font>
-                        <Font size="14.0"/>
+                        <Font size="14.0" />
                     </font>
                 </Label>
             </VBox>
         </HBox>
         <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
             <Tab text="Dashboard">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                <AnchorPane fx:id="dashboardPane">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></AnchorPane>
             </Tab>
             <Tab text="Incident management">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                <AnchorPane fx:id="ticketPane">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></AnchorPane>
             </Tab>
             <Tab text="User management">
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0"/>
+                <AnchorPane fx:id="userPane">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding></AnchorPane>
             </Tab>
         </TabPane>
     </VBox>

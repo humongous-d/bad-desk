@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import atlantafx.base.controls.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.DashboardView">
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+    <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <HBox spacing="8.0">
+            <VBox.margin>
+                <Insets />
+            </VBox.margin>
+            <Label text="Current incidents" HBox.hgrow="ALWAYS">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+            <Spacer />
+            <Button mnemonicParsing="false" onAction="#viewUnresolvedIncidents" text="Show list" HBox.hgrow="ALWAYS" />
+        </HBox>
+        <HBox>
+            <VBox>
+                <Label text="Unsolved incidents">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <PieChart fx:id="unresolvedPieChart" />
+            </VBox>
+            <VBox layoutX="10.0" layoutY="10.0">
+                <Label text="Incidents past deadline">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <PieChart fx:id="overduePieChart" />
+            </VBox>
+        </HBox>
+    </VBox>
+</AnchorPane>
