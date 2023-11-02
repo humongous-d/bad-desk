@@ -15,7 +15,7 @@ public class SimpleCredentialChecker  implements CredentialChecker {
 
 
     }
-
+// code for checking password
     @Override
     public boolean checkPassword(String username, String password) {
         String storedPassword = credentials.get(username);
