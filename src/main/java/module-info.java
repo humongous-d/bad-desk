@@ -9,6 +9,7 @@ module me.piguy.baddesk {
 
     opens me.piguy.baddesk to javafx.fxml;
     opens me.piguy.baddesk.pages to javafx.fxml;
+    opens me.piguy.baddesk.models to javafx.base;
     exports me.piguy.baddesk;
     exports me.piguy.baddesk.api;
     exports me.piguy.baddesk.pages;
