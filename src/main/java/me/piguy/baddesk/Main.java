@@ -16,7 +16,7 @@ public class Main extends Application {
 
         Page.Login.navigate();
 
-        ApiAdapter api = new PythonAPI();
+        ApiAdapter api = new TestLocalAPI();
         api.connect("127.0.0.1", "8000");
         api.login("theanimeman", "nonsensejp");
         api.currentUser();
