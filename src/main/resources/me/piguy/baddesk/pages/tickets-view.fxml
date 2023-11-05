@@ -14,32 +14,37 @@
                 <FontIcon iconLiteral="mdmz-search" />
             </left>
         </CustomTextField>
+        <HBox maxHeight="1.7976931348623157E308" spacing="6.0">
+            <Label maxHeight="1.7976931348623157E308" text="Sort" />
+            <Button text="_Date" fx:id="sortDate"/>
+            <Button text="_Priority" fx:id="sortPriority" onAction="#sortByPriority" />
+        </HBox>
         <TableView fx:id="ticketsTable" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn text="ID">
+                <TableColumn text="ID" sortable="false">
                     <cellValueFactory>
                         <RecordValueFactory value="id" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="Subject">
+                <TableColumn prefWidth="230.0" text="Subject" sortable="false">
                     <cellValueFactory>
                         <RecordValueFactory value="subject" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="User">
+                <TableColumn prefWidth="107.0" text="User" sortable="false">
 
                 </TableColumn>
-                <TableColumn text="Date">
+                <TableColumn prefWidth="98.0" text="Date" sortable="false">
 
                 </TableColumn>
-                <TableColumn text="Status">
+                <TableColumn fx:id="priorityColumn" prefWidth="68.0" sortable="false" text="Status">
                     <cellValueFactory>
-                        <StatusValueFactory value="id" />
+                        <StatusValueFactory value="priority" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-      <Pagination fx:id="pageList"/>
+      <Pagination fx:id="pageList" />
     </VBox>
     <Button fx:id="addIncident" alignment="BOTTOM_LEFT" text="New Incident" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="10">
         <graphic>

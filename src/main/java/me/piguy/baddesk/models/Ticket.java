@@ -1,4 +1,4 @@
 package me.piguy.baddesk.models;
 
-public record Ticket(int id, String subject) {
+public record Ticket(int id, String subject, Priority priority) {
 }

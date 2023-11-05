@@ -55,8 +55,6 @@ public class MainViewController implements ViewController {
             }
         }
 
-
-
         try {
             attachPane("dashboard-view.fxml", dashboardPane);
             attachPane("tickets-view.fxml", ticketPane);

@@ -12,7 +12,6 @@ module me.piguy.baddesk {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.ikonli.material2;
     requires org.kordamp.ikonli.feather;
-    requires org.kordamp.ikonli.fluentui;
 
     opens me.piguy.baddesk to javafx.fxml;
     opens me.piguy.baddesk.pages to javafx.fxml;
