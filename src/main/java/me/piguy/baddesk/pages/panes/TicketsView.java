@@ -36,7 +36,6 @@ public class TicketsView implements TabPaneViewController {
             int end = Math.min(start + ITEMS_PER_PAGE + 1, totalTickets);
 
             if (start < end && start >= 0) {
-                System.out.println(end);
                 ticketsTable.setItems(FXCollections.observableArrayList(ticketsList.subList(start, end)));
             }
 

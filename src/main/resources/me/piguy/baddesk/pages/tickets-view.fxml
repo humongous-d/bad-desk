@@ -34,7 +34,7 @@
                 </TableColumn>
                 <TableColumn text="Status">
                     <cellValueFactory>
-                        <StatusValueFactory priority="low" />
+                        <StatusValueFactory value="id" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>

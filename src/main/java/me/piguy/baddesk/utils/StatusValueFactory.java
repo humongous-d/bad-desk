@@ -15,25 +15,18 @@ import org.kordamp.ikonli.javafx.FontIcon;
 /**
  * Renders colours in the cell factory
  */
-public class StatusValueFactory<S> implements Callback<TableColumn.CellDataFeatures<S, FontIcon>, ObservableValue<FontIcon>> {
-    private final String priority;
-
-    public StatusValueFactory(@NamedArg("priority") String priority) {
-        this.priority = priority;
-    }
-
-    public FontIcon getIcon() {
-        return switch (priority) {
-            case "critical" -> new FontIcon(Feather.ALERT_TRIANGLE);
-            case "high" -> new FontIcon(Feather.ALERT_OCTAGON);
-            case "medium" -> new FontIcon(Feather.ALERT_CIRCLE);
-            case "low" -> new FontIcon(Feather.CLOCK);
-            default -> new FontIcon(FluentUiRegularMZ.QUESTION_CIRCLE_24);
-        };
+public class StatusValueFactory<S> extends RecordValueFactory<S, FontIcon> {
+    public StatusValueFactory(@NamedArg("value") String value) {
+        super(value);
     }
 
     @Override
-    public ObservableValue<FontIcon> call(TableColumn.CellDataFeatures<S, FontIcon> param) {
-        return new ReadOnlyObjectWrapper<>(getIcon());
+    protected FontIcon convertValue(Object value) {
+        if (value instanceof String) {
+            String priority = (String) value;
+            return null;
+        } else {
+            return null;
+        }
     }
 }
