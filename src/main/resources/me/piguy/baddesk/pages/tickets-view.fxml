@@ -7,25 +7,23 @@
 <?import me.piguy.baddesk.utils.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.TicketsView">
-    <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.panes.TicketsView">
+    <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <CustomTextField promptText="Search">
             <left>
-                <FontIcon iconLiteral="mdmz-search"/>
+                <FontIcon iconLiteral="mdmz-search" />
             </left>
         </CustomTextField>
-        <TableView fx:id="ticketsTable" editable="true">
+        <TableView fx:id="ticketsTable" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <columns>
                 <TableColumn text="ID">
                     <cellValueFactory>
-                        <RecordValueFactory value="id"/>
+                        <RecordValueFactory value="id" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Subject">
                     <cellValueFactory>
-                        <RecordValueFactory value="subject"/>
+                        <RecordValueFactory value="subject" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="User">
@@ -35,17 +33,20 @@
 
                 </TableColumn>
                 <TableColumn text="Status">
+                    <cellValueFactory>
+                        <StatusValueFactory priority="low" />
+                    </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
+      <Pagination fx:id="pageList"/>
     </VBox>
-    <Button fx:id="addIncident" alignment="BOTTOM_LEFT" text="New Incident" AnchorPane.bottomAnchor="10"
-            AnchorPane.rightAnchor="10">
+    <Button fx:id="addIncident" alignment="BOTTOM_LEFT" text="New Incident" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="10">
         <graphic>
-            <FontIcon iconLiteral="mdal-add"/>
+            <FontIcon iconLiteral="mdal-add" />
         </graphic>
         <cursor>
-            <Cursor fx:constant="HAND"/>
+            <Cursor fx:constant="HAND" />
         </cursor>
     </Button>
 </AnchorPane>

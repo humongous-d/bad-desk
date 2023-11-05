@@ -15,8 +15,8 @@ public class RecordValueFactory<S, T> implements Callback<TableColumn.CellDataFe
         this.valueRef = value;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
+    @Override
     public ObservableValue<T> call(TableColumn.CellDataFeatures<S, T> param) {
         if (param != null && param.getValue() != null) {
             try {

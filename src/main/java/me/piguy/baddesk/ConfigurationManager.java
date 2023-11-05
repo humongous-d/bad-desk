@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ConfigurationManager {
+    public static final int ITEMS_PER_PAGE = 10;
     private static ConfigurationManager config;
     private final HashMap<String, PageTheme> themes = new HashMap<>();
     public ApiAdapter api;
