@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
+<?import atlantafx.base.controls.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import me.piguy.baddesk.utils.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="me.piguy.baddesk.pages.UserView"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.UserView">
+    <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <CustomTextField promptText="Search">
+            <left>
+                <FontIcon iconLiteral="mdmz-search"/>
+            </left>
+        </CustomTextField>
+        <TableView fx:id="ticketsTable" editable="true">
+            <columns>
+                <TableColumn text="ID">
+                    <cellValueFactory>
+                        <RecordValueFactory value="id"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="Subject">
+                    <cellValueFactory>
+                        <RecordValueFactory value="subject"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="User">
 
+                </TableColumn>
+                <TableColumn text="Date">
+
+                </TableColumn>
+                <TableColumn text="Status">
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+    <Button fx:id="addUser" alignment="BOTTOM_LEFT" text="New User" AnchorPane.bottomAnchor="10"
+            AnchorPane.rightAnchor="10">
+        <graphic>
+            <FontIcon iconLiteral="mdal-add"/>
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
 </AnchorPane>
