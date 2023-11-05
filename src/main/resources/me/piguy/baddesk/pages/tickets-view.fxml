@@ -1,28 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import atlantafx.base.controls.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import me.piguy.baddesk.utils.*?>
+<?import org.kordamp.ikonli.javafx.*?>
 
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.TicketsView">
-    <VBox prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+    <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
           AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <TableView editable="true" fx:id="ticketsTable">
+        <CustomTextField promptText="Search">
+            <left>
+                <FontIcon iconLiteral="mdmz-search"/>
+            </left>
+        </CustomTextField>
+        <TableView fx:id="ticketsTable" editable="true">
             <columns>
                 <TableColumn text="ID">
                     <cellValueFactory>
-                        <PropertyValueFactory property="id"/>
+                        <RecordValueFactory value="id"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn text="Subject">
                     <cellValueFactory>
-                        <PropertyValueFactory property="subject"/>
+                        <RecordValueFactory value="subject"/>
                     </cellValueFactory>
+                </TableColumn>
+                <TableColumn text="User">
+
+                </TableColumn>
+                <TableColumn text="Date">
+
+                </TableColumn>
+                <TableColumn text="Status">
                 </TableColumn>
             </columns>
         </TableView>
     </VBox>
-    <Button alignment="BOTTOM_LEFT" contentDisplay="CENTER" text="Create incident" AnchorPane.bottomAnchor="10"
-            AnchorPane.rightAnchor="10"/>
+    <Button fx:id="addIncident" alignment="BOTTOM_LEFT" text="New Incident" AnchorPane.bottomAnchor="10"
+            AnchorPane.rightAnchor="10">
+        <graphic>
+            <FontIcon iconLiteral="mdal-add"/>
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND"/>
+        </cursor>
+    </Button>
 </AnchorPane>
