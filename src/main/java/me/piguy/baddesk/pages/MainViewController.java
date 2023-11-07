@@ -62,6 +62,7 @@ public class MainViewController implements ViewController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @FXML

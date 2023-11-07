@@ -7,7 +7,7 @@
 <?import me.piguy.baddesk.utils.*?>
 <?import org.kordamp.ikonli.javafx.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.panes.TicketsView">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.panes.TicketsView">
     <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <CustomTextField promptText="Search">
             <left>
@@ -16,28 +16,32 @@
         </CustomTextField>
         <HBox maxHeight="1.7976931348623157E308" spacing="6.0">
             <Label maxHeight="1.7976931348623157E308" text="Sort" />
-            <Button text="_Date" fx:id="sortDate"/>
-            <Button text="_Priority" fx:id="sortPriority" onAction="#sortByPriority" />
+            <Button fx:id="sortDate" onAction="#sortByDueDate" text="_Date" />
+            <Button fx:id="sortPriority" onAction="#sortByPriority" text="_Priority" />
         </HBox>
         <TableView fx:id="ticketsTable" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn text="ID" sortable="false">
+                <TableColumn sortable="false" text="ID">
                     <cellValueFactory>
                         <RecordValueFactory value="id" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="230.0" text="Subject" sortable="false">
+                <TableColumn prefWidth="246.0" sortable="false" text="Subject">
                     <cellValueFactory>
                         <RecordValueFactory value="subject" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="107.0" text="User" sortable="false">
-
+                <TableColumn prefWidth="206.0" sortable="false" text="User">
+                    <cellValueFactory>
+                        <RecordValueFactory value="asignedTo" />
+                    </cellValueFactory>
                 </TableColumn>
-                <TableColumn prefWidth="98.0" text="Date" sortable="false">
-
+                <TableColumn prefWidth="238.0" sortable="false" text="Due date">
+                    <cellValueFactory>
+                        <RecordValueFactory value="dueDate" />
+                    </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="priorityColumn" prefWidth="68.0" sortable="false" text="Status">
+                <TableColumn prefWidth="97.0" sortable="false" text="Priority">
                     <cellValueFactory>
                         <StatusValueFactory value="priority" />
                     </cellValueFactory>
