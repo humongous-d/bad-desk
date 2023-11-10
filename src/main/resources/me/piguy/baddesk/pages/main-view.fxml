@@ -13,7 +13,7 @@
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin>
             </CheckBox>
-         <ChoiceBox fx:id="themeSelector" value="Nord" onAction="#changeTheme" prefWidth="150.0">
+         <ChoiceBox fx:id="themeSelector" onAction="#changeTheme" prefWidth="150.0" value="Dracula">
             <HBox.margin>
                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </HBox.margin></ChoiceBox>

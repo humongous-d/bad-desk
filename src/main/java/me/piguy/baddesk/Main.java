@@ -4,6 +4,7 @@ import atlantafx.base.theme.NordLight;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import me.piguy.baddesk.api.*;
+import me.piguy.baddesk.pages.theme.PageTheme;
 import me.piguy.baddesk.router.Router;
 import me.piguy.baddesk.router.Page;
 
@@ -25,7 +26,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        Application.setUserAgentStylesheet(new NordLight().getUserAgentStylesheet());
+        Application.setUserAgentStylesheet(PageTheme.defaultTheme().getThemeDark().getUserAgentStylesheet());
         launch();
     }
 }

@@ -20,7 +20,8 @@ public class LoginViewController implements ViewController {
     @FXML
     Label text;
 
-    public void login() {
+    @FXML
+    private void login() {
         //db.get();
 
         //text.getScene().setUserAgentStylesheet(new NordDark().getUserAgentStylesheet());

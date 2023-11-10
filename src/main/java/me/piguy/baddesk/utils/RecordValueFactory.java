@@ -9,14 +9,22 @@ import javafx.util.Callback;
 import java.lang.reflect.InvocationTargetException;
 
 public class RecordValueFactory<S, T> implements Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>> {
-    String valueRef;
+    protected String valueRef;
 
     public RecordValueFactory(@NamedArg("value") String value) {
         this.valueRef = value;
     }
 
-    @Override
     @SuppressWarnings("unchecked")
+    protected T convertValue(Object value) {
+        if (value != null) {
+            return (T) value;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public ObservableValue<T> call(TableColumn.CellDataFeatures<S, T> param) {
         if (param != null && param.getValue() != null) {
             try {
@@ -24,7 +32,7 @@ public class RecordValueFactory<S, T> implements Callback<TableColumn.CellDataFe
                 Object value = getter.invoke(param.getValue());
 
                 if (value != null) {
-                    return new ReadOnlyObjectWrapper<>((T) value);
+                    return new ReadOnlyObjectWrapper<>(convertValue(value));
                 }
 
             } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {

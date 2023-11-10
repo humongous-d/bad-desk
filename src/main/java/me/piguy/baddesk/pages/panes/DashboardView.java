@@ -1,4 +1,4 @@
-package me.piguy.baddesk.pages;
+package me.piguy.baddesk.pages.panes;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
