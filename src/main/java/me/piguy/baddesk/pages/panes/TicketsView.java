@@ -4,10 +4,10 @@ import atlantafx.base.theme.Styles;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 import me.piguy.baddesk.models.Priority;
 import me.piguy.baddesk.models.Ticket;
 
@@ -57,7 +57,7 @@ public class TicketsView implements TabPaneViewController {
         int totalTickets = ticketsList.size();
 
         int start = page * ITEMS_PER_PAGE;
-        int end = Math.min(start + ITEMS_PER_PAGE + /* index offset */ 1, totalTickets);
+        int end = Math.min(start + ITEMS_PER_PAGE , totalTickets);
 
         if (start < end && start >= 0) {
             ticketsTable.setItems(FXCollections.observableArrayList(ticketsList.subList(start, end)));
@@ -69,7 +69,7 @@ public class TicketsView implements TabPaneViewController {
         this.loadTable(page);
     }
 
-    private void loadSampleData() {
+    private void loadData() {
         LocalDate date = LocalDate.now();
         for (int i = 0; i <= 65; i++) {
             Priority priority;
@@ -101,8 +101,26 @@ public class TicketsView implements TabPaneViewController {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         loadCss();
-        loadSampleData();
+        loadData();
         pageListSetup();
+        sortByPriority();
+
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem editItem = new MenuItem("Edit");
+        MenuItem deleteItem = new MenuItem("Delete");
+
+        contextMenu.getItems().addAll(editItem, deleteItem);
+
+
+        ticketsTable.setRowFactory(t -> {
+            TableRow<Ticket> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (!row.isEmpty() && event.getButton() == MouseButton.SECONDARY) {
+                    contextMenu.show(ticketsTable, event.getScreenX(), event.getScreenY());
+                }
+            });
+            return row;
+        });
     }
 
     @FXML
