@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -41,6 +42,8 @@ public class TicketsView implements TabPaneViewController {
     private Button addIncident;
     @FXML
     private TableView<Ticket> ticketsTable;
+    @FXML
+    private TextField searchField;
 
     private final ObservableList<Ticket> ticketsList = FXCollections.observableArrayList(new ArrayList<>());
     private ApiAdapter api;
@@ -264,4 +267,21 @@ public class TicketsView implements TabPaneViewController {
         loadTable();
     }
 
+    public void searchTicket(KeyEvent keyEvent) {
+        String key = searchField.getText();
+        if (key.length() >= 3) {
+            // Implement your ticket search logic here
+            ObservableList<HashMap<String, Object>> searchResults = FXCollections.observableArrayList();
+
+            for (HashMap<String, Object> ticket : api.getTickets()) {
+                if (ticket.get("subject").toString().toLowerCase().contains(key.toLowerCase())) {
+                    searchResults.add(ticket);
+                }
+            }
+
+            // Update your table with search results
+            ticketsTable.getItems().clear();
+            ticketsTable.getItems().addAll(searchResults);
+        }
+    }
 }

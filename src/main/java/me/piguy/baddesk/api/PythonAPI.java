@@ -202,6 +202,7 @@ public class PythonAPI implements ApiAdapter {
     }
 
 
+
     @Override
     public boolean resetPassword(String username) {
         return false;
@@ -214,5 +215,26 @@ public class PythonAPI implements ApiAdapter {
     public String getToken() {
         return this.token;
     }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> searchTicket(String query) {
+        Request request;
+        Ctx response;
+
+        try {
+            request = new Request(this, "/tickets/search");
+            response = request.Get()
+                    .withAuth()
+                    .AddQuery("query", query)
+                    .Do()
+                    .Listen();
+        } catch (IOException e) {
+            System.out.println("Failed to search tickets");
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+        return response.toList();
+    }
+
 
 }
