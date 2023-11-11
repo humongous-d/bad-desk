@@ -34,5 +34,5 @@ public interface ApiAdapter {
 
     Boolean editTicket(Ticket ticket);
 
-    ArrayList<HashMap<String, Object>> searchTicket(String query);
+
 }

@@ -72,8 +72,4 @@ public class TestLocalAPI implements ApiAdapter {
         return false;
     }
 
-    @Override
-    public ArrayList<HashMap<String, Object>> searchTicket(String query) {
-        return null;
-    }
 }
