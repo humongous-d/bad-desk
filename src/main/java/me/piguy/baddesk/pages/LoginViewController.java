@@ -15,6 +15,8 @@ import me.piguy.baddesk.database.MongoUserDB;
 import me.piguy.baddesk.router.Page;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class LoginViewController implements ViewController {
     Database db;
@@ -46,7 +48,9 @@ public class LoginViewController implements ViewController {
             text.setText("Wrong username or password.");
         }
     }
-    public void initialize() {
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         db = new MongoUserDB();
     }
 }
