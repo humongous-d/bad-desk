@@ -16,6 +16,7 @@ public class Main extends Application {
         Page.Login.navigate();
 
         stage.show();
+
     }
 
     public static void main(String[] args) {

@@ -13,7 +13,6 @@ public class SimpleCredentialChecker  implements CredentialChecker {
         credentials.put("Slava", "avals");
         credentials.put("Artur", "rutra");
 
-
     }
 
     @Override
