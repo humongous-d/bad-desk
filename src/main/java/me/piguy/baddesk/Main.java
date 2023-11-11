@@ -22,13 +22,11 @@ public class Main extends Application {
 
         // API Testing
         api.connect("127.0.0.1", "8000");
-        api.login("theanimeman", "nonsensejp");
-        System.out.println(api.getTickets());
+//        System.out.println(api.getTickets());
 
-        System.out.println(api.currentUser());
+//        System.out.println(api.currentUser());
 
 //        api.newTicket("some ticket", "a", 1, "Open", "a", "a");
-
 
         Page.Login.navigate();
 

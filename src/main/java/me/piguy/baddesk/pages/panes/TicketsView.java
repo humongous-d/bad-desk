@@ -197,7 +197,8 @@ public class TicketsView implements TabPaneViewController {
             throw new RuntimeException(e);
         }
         PopupController controller = loader.getController();
-        controller.setTicket(ticketsTable.getFocusModel().getFocusedItem());
+        // Dont set ticket because thats for edit
+//        controller.setTicket(ticketsTable.getFocusModel().getFocusedItem());
         controller.setApi(api);
         Stage popup = new Stage();
         Scene scene = new Scene(content, 400, 500);

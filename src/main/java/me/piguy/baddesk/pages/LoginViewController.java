@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import me.piguy.baddesk.ConfigurationManager;
+import me.piguy.baddesk.api.ApiAdapter;
 import me.piguy.baddesk.database.Database;
 import me.piguy.baddesk.database.MongoUserDB;
 import me.piguy.baddesk.router.Page;
@@ -25,10 +27,13 @@ public class LoginViewController implements ViewController {
         //db.get();
 
         //text.getScene().setUserAgentStylesheet(new NordDark().getUserAgentStylesheet());
+        ApiAdapter api = ConfigurationManager.getInstance().api;
 
 
         try {
-            Page.Dashboard.navigate();
+            if (api.login("theanimeman", "nonsensejp")) {
+                Page.Dashboard.navigate();
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

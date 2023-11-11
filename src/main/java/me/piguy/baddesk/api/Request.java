@@ -42,18 +42,23 @@ public class Request {
         return this;
     }
 
-    public Ctx Listen(){
+    public Ctx Listen() throws RuntimeException {
         try {
             // Return code
             context.setReturnCode(connection.getResponseCode());
             // Body
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            StringBuilder body = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                body.append(line);
+            if (context.getReturnCode() == 200) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String line;
+                StringBuilder body = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    body.append(line);
+                }
+                context.setBody(body.toString());
             }
-            context.setBody(body.toString());
+            else {
+                return context;
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
