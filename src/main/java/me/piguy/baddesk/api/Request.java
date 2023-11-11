@@ -7,6 +7,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 
+import me.piguy.baddesk.utils.JSONUtility;
+
 public class Request {
     private String path;
     private Ctx context;
@@ -17,7 +19,6 @@ public class Request {
     public Request(ApiAdapter api, String path) throws IOException {
         this.path = path;
         this.api = api;
-        url = new URL(String.format(api.getUrl() + this.path));
     }
 
     public Request Get(){
@@ -25,11 +26,17 @@ public class Request {
         return this;
     }
     public Request Post(){
-        this.context = new Ctx(api.getUrl(), "GET");
+        this.context = new Ctx(api.getUrl(), "POST");
+        return this;
+    }
+
+    public Request AddQuery(String key, String value){
+        context.setParameter(key, value);
         return this;
     }
 
     public Request Do() throws IOException {
+        url = new URL(String.format(api.getUrl() + this.path + "?" + context.buildParameters()));
         connection = (HttpURLConnection) url.openConnection();
         connectionRx();
         return this;
@@ -73,14 +80,20 @@ public class Request {
         return this;
     }
 
-    public Request DoWithMultipartForm(HashMap<String, String> formData) throws IOException {
-        connection = (HttpURLConnection) url.openConnection();
+    public Request DoWithJSON(HashMap<String, Object> data) throws IOException {
+        Do();
         try {
             connection.setDoOutput(true);
-            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+            connection.setRequestProperty("Content-Type", "application/json");
+            // Translate HashMap into JSON
+//            mapToJson
 
             OutputStream outputStream = connection.getOutputStream();
-            OutputStreamWriter writer = getWriter(formData, outputStream);
+            OutputStreamWriter writer = getNewWriter(outputStream);
+            String json = JSONUtility.hashMapToJson(data);
+            writer.write(json);
+            System.out.println(json);
+            writer.flush();
             writer.close();
         } catch (Exception e) {
             e.printStackTrace(); // Handle exception according to your application's needs
@@ -89,9 +102,25 @@ public class Request {
         return this;
     }
 
-    private static OutputStreamWriter getWriter(HashMap<String, String> formData, OutputStream outputStream) throws IOException {
-        OutputStreamWriter writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+    public Request DoWithMultipartForm(HashMap<String, String> formData) throws IOException {
+        Do();
 
+        try {
+            connection.setDoOutput(true);
+            connection.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + BOUNDARY);
+
+            OutputStream outputStream = connection.getOutputStream();
+            OutputStreamWriter writer = getWriterForMultiPartForm(formData, outputStream);
+            writer.close();
+        } catch (Exception e) {
+            e.printStackTrace(); // Handle exception according to your application's needs
+        }
+
+        return this;
+    }
+
+    private static OutputStreamWriter getWriterForMultiPartForm(HashMap<String, String> formData, OutputStream outputStream) throws IOException {
+        OutputStreamWriter writer = getNewWriter(outputStream);
         // Add form fields
         for (HashMap.Entry<String, String> entry : formData.entrySet()) {
             String fieldName = entry.getKey();
@@ -105,6 +134,10 @@ public class Request {
         writer.write("--" + BOUNDARY + "--\r\n");
         writer.flush();
         return writer;
+    }
+
+    private static OutputStreamWriter getNewWriter(OutputStream outputStream) {
+        return new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
     }
 
     private void connectionRx() throws ProtocolException {

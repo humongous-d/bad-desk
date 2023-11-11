@@ -11,16 +11,26 @@ import me.piguy.baddesk.router.Page;
 import java.io.IOException;
 
 public class Main extends Application {
+    private ApiAdapter api;
     @Override
     public void start(Stage stage) throws IOException {
         Router.initiate(stage);
 
-        Page.Login.navigate();
+        // Set API
+        this.api = new PythonAPI();
+        ConfigurationManager.getInstance().api = this.api;
 
-        ApiAdapter api = new TestLocalAPI();
+        // API Testing
         api.connect("127.0.0.1", "8000");
         api.login("theanimeman", "nonsensejp");
-        api.currentUser();
+        System.out.println(api.getTickets());
+
+        System.out.println(api.currentUser());
+
+//        api.newTicket("some ticket", "a", 1, "Open", "a", "a");
+
+
+        Page.Login.navigate();
 
         stage.show();
     }
