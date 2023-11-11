@@ -17,7 +17,7 @@ public class SimpleCredentialChecker  implements CredentialChecker {
 
     @Override
     public boolean checkPassword(String username, String password) {
-        String storedPassword = credentials.get(username);
-        return storedPassword != null && storedPassword.equals(password);
+        return ConfigurationManager.getInstance().api.login(username, password);
+
     }
 }
