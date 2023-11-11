@@ -50,8 +50,12 @@ public class PythonAPI implements ApiAdapter {
             return false;
         }
         // Set our API token for authentication
-        this.setToken(String.valueOf(loginResponse.toMap().get("access_token")));
-        return true;
+        if (loginResponse.getReturnCode() == 200) {
+            this.setToken(String.valueOf(loginResponse.toMap().get("access_token")));
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
