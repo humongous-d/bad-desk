@@ -27,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import me.piguy.baddesk.pages.panes.Status;
+
 import static me.piguy.baddesk.ConfigurationManager.ITEMS_PER_PAGE;
 
 public class TicketsView implements TabPaneViewController {
@@ -80,7 +81,7 @@ public class TicketsView implements TabPaneViewController {
     }
 
     private void loadData() {
-//        loadExampleData();
+        //loadExampleData();
         loadApiData();
     }
 
@@ -108,6 +109,8 @@ public class TicketsView implements TabPaneViewController {
                     (String) ticket.get("assignee"),
                     (String) ticket.get("attachment")
             ));
+            pageListSetup();
+            sortByPriority();
         }
 
     }

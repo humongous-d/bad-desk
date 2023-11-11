@@ -21,11 +21,6 @@
         </HBox>
         <TableView fx:id="ticketsTable" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
             <columns>
-                <TableColumn sortable="false" text="ID">
-                    <cellValueFactory>
-                        <RecordValueFactory value="id" />
-                    </cellValueFactory>
-                </TableColumn>
                 <TableColumn prefWidth="246.0" sortable="false" text="Subject">
                     <cellValueFactory>
                         <RecordValueFactory value="subject" />
