@@ -71,4 +71,5 @@ public class TestLocalAPI implements ApiAdapter {
     public boolean newTicket(Ticket ticket) {
         return false;
     }
+
 }

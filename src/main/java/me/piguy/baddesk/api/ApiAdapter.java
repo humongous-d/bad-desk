@@ -33,4 +33,6 @@ public interface ApiAdapter {
     Boolean deleteTicket(String id);
 
     Boolean editTicket(Ticket ticket);
+
+
 }
