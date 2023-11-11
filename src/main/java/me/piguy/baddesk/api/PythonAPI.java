@@ -149,7 +149,7 @@ public class PythonAPI implements ApiAdapter {
                             put("description", ticket.description());
                             put("attachment", ticket.attachment());
                             put("assignee", ticket.asignedTo());
-                            put("priority", ticket.priority());
+                            put("priority", ticket.priority().ordinal());
                             put("status", ticket.status().name());
                         }
                     })

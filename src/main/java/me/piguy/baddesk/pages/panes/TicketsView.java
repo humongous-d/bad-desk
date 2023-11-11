@@ -216,19 +216,40 @@ public class TicketsView implements TabPaneViewController {
         );
     }
 
-    private void refreshTable() {
-        ticketsList.clear();
-        loadData();
-        loadTable();
-    }
-
     private void onEdit(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("task-popup.fxml"));
+        GridPane content;
+        try {
+            content = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        PopupController controller = loader.getController();
+        // Dont set ticket because thats for edit
+        controller.setTicket(ticketsTable.getFocusModel().getFocusedItem());
+        controller.setApi(api);
+        Stage popup = new Stage();
+        Scene scene = new Scene(content, 400, 500);
+        popup.setScene(scene);
+        popup.setTitle("Help");
+        popup.show();
 
+        popup.setOnHidden(
+                (e) -> {
+                    refreshTable();
+                }
+        );
     }
 
     private void onDelete(ActionEvent e) {
         api.deleteTicket(ticketsTable.getFocusModel().getFocusedItem().id());
         refreshTable();
+    }
+
+    private void refreshTable() {
+        ticketsList.clear();
+        loadData();
+        loadTable();
     }
 
     @FXML
