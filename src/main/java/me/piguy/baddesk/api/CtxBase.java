@@ -36,7 +36,7 @@ public class CtxBase {
         this.properties.put(name, value);
     }
 
-    public String buildParameters() throws UnsupportedEncodingException {
+    public String buildParameters() {
         StringBuilder result = new StringBuilder();
 
         for (HashMap.Entry<String, String> entry : parameters.entrySet()) {

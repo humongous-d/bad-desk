@@ -1,6 +1,10 @@
 package me.piguy.baddesk.api;
 
-import java.io.IOException;
+import me.piguy.baddesk.models.Ticket;
+import me.piguy.baddesk.pages.panes.Status;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 public class TestLocalAPI implements ApiAdapter {
@@ -20,6 +24,21 @@ public class TestLocalAPI implements ApiAdapter {
         return null;
     }
 
+    @Override
+    public ArrayList<HashMap<String, Object>> getTickets() {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteTicket(String id) {
+        return null;
+    }
+
+    @Override
+    public Boolean editTicket(Ticket ticket) {
+        return null;
+    }
+
 
     // Ignored
     @Override
@@ -31,12 +50,20 @@ public class TestLocalAPI implements ApiAdapter {
     public void connect(String host, String port) {}
 
     @Override
-    public void disconnect() {
+    public void disconnect() {}
 
+    @Override
+    public boolean newTicket(String title, String description, Integer priority, Status status, String assignee, String attachment) {
+        return false;
     }
 
     @Override
     public boolean login(String username, String password) {
+        return false;
+    }
+
+    @Override
+    public boolean newTicket(Ticket ticket) {
         return false;
     }
 }
