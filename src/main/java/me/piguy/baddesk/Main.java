@@ -21,16 +21,16 @@ public class Main extends Application {
         ConfigurationManager.getInstance().api = this.api;
 
         // API Testing
-        api.connect("127.0.0.1", "8000");
+        api.connect("136.244.100.94", "5000");
 //        System.out.println(api.getTickets());
 
-//        System.out.println(api.currentUser());
 
 //        api.newTicket("some ticket", "a", 1, "Open", "a", "a");
 
         Page.Login.navigate();
 
         stage.show();
+
     }
 
     public static void main(String[] args) {
