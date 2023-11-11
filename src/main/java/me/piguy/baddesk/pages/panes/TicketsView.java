@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -27,7 +26,6 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import me.piguy.baddesk.pages.panes.Status;
 
 import static me.piguy.baddesk.ConfigurationManager.ITEMS_PER_PAGE;
 
@@ -271,17 +269,35 @@ public class TicketsView implements TabPaneViewController {
         String key = searchField.getText();
         if (key.length() >= 3) {
             // Implement your ticket search logic here
-            ObservableList<HashMap<String, Object>> searchResults = FXCollections.observableArrayList();
+            ObservableList<Ticket> searchResults = FXCollections.observableArrayList();
 
             for (HashMap<String, Object> ticket : api.getTickets()) {
-                if (ticket.get("subject").toString().toLowerCase().contains(key.toLowerCase())) {
-                    searchResults.add(ticket);
+                if (ticket.get("title") != null && ticket.get("title").toString().toLowerCase().contains(key.toLowerCase())) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss[.SSSSSS]");
+                    Date date = Date.from(
+                            LocalDateTime.parse(ticket.get("due_date").toString(), formatter)
+                                    .atZone(ZoneId.of("Europe/Berlin")) // Complains without this
+                                    .toInstant()
+                    );
+                    searchResults.add(
+                            new Ticket(
+                                    (String) ticket.get("id"),
+                                    (String) ticket.get("title"),
+                                    (String) ticket.get("description"),
+                                    Priority.values()[(Integer) ticket.get("priority")],
+                                    Status.valueOf((String) ticket.get("status")),
+                                    date,
+                                    (String) ticket.get("assignee"),
+                                    (String) ticket.get("attachment")
+                            )
+                    );
                 }
             }
 
             // Update your table with search results
-            ticketsTable.getItems().clear();
-            ticketsTable.getItems().addAll(searchResults);
-        }
+            ticketsList.clear();
+            ticketsList.addAll(searchResults);
+            loadTable();
+        } else {refreshTable();}
     }
 }
