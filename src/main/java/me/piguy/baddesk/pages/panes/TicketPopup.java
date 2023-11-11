@@ -15,7 +15,7 @@ import me.piguy.baddesk.models.Ticket;
 import java.time.ZoneId;
 import java.util.Date;
 
-public class TaskPopup implements PopupController {
+public class TicketPopup implements PopupController {
     @FXML
     public ChoiceBox<Status> statusChoiceBox;
     @FXML

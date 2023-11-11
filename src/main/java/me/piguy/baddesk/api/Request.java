@@ -97,7 +97,6 @@ public class Request {
             OutputStreamWriter writer = getNewWriter(outputStream);
             String json = JSONUtility.hashMapToJson(data);
             writer.write(json);
-            System.out.println(json);
             writer.flush();
             writer.close();
         } catch (Exception e) {

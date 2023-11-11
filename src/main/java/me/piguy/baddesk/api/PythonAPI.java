@@ -90,7 +90,24 @@ public class PythonAPI implements ApiAdapter {
                     .Listen();
         } catch (IOException e) {
             System.out.println("Failed to update ticket");
-            e.printStackTrace();
+            return new ArrayList<>();
+        }
+        return response.toList();
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> getTickets(int page) {
+        Request request;
+        Ctx response;
+
+        try {
+            request = new Request(this, "/tickets/split/" + page);
+            response = request.Get()
+                    .withAuth()
+                    .Do()
+                    .Listen();
+        } catch (IOException e) {
+            System.out.println("Failed to update ticket");
             return new ArrayList<>();
         }
         return response.toList();
@@ -132,7 +149,7 @@ public class PythonAPI implements ApiAdapter {
                             put("description", ticket.description());
                             put("attachment", ticket.attachment());
                             put("assignee", ticket.asignedTo());
-                            put("priority", ticket.priority());
+                            put("priority", ticket.priority().ordinal());
                             put("status", ticket.status().name());
                         }
                     })

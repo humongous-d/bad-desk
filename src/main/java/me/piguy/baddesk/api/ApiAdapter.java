@@ -28,6 +28,8 @@ public interface ApiAdapter {
 
     ArrayList<HashMap<String, Object>> getTickets();
 
+    ArrayList<HashMap<String, Object>> getTickets(int page);
+
     Boolean deleteTicket(String id);
 
     Boolean editTicket(Ticket ticket);
