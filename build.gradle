@@ -35,8 +35,17 @@ javafx {
 }
 
 dependencies {
+    // UI imports
     implementation("io.github.mkpaz:atlantafx-base:2.0.1")
+    implementation("org.kordamp.ikonli:ikonli-javafx:12.3.1")
+    implementation("org.kordamp.ikonli:ikonli-material2-pack:12.3.1")
+    implementation("org.kordamp.ikonli:ikonli-feather-pack:12.3.1")
+    implementation("org.kordamp.ikonli:ikonli-fluentui-pack:12.3.1")
+
+    implementation("org.json:json:20230618")
     implementation("org.mongodb:mongodb-driver-sync:4.11.0")
+
+    // Unit testing
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }

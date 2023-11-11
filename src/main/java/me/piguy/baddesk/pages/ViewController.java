@@ -1,4 +1,6 @@
 package me.piguy.baddesk.pages;
 
-public interface ViewController {
+import javafx.fxml.Initializable;
+
+public interface ViewController extends Initializable {
 }

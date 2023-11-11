@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import atlantafx.base.controls.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import me.piguy.baddesk.utils.*?>
+<?import org.kordamp.ikonli.javafx.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.piguy.baddesk.pages.panes.TicketsView">
+    <VBox prefHeight="400.0" prefWidth="600.0" spacing="6.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <CustomTextField promptText="Search">
+            <left>
+                <FontIcon iconLiteral="mdmz-search" />
+            </left>
+        </CustomTextField>
+        <HBox maxHeight="1.7976931348623157E308" spacing="6.0">
+            <Label maxHeight="1.7976931348623157E308" text="Sort" />
+            <Button fx:id="sortDate" onAction="#sortByDueDate" text="_Date" />
+            <Button fx:id="sortPriority" onAction="#sortByPriority" text="_Priority" />
+        </HBox>
+        <TableView fx:id="ticketsTable" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn sortable="false" text="ID">
+                    <cellValueFactory>
+                        <RecordValueFactory value="id" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="246.0" sortable="false" text="Subject">
+                    <cellValueFactory>
+                        <RecordValueFactory value="subject" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="206.0" sortable="false" text="User">
+                    <cellValueFactory>
+                        <RecordValueFactory value="asignedTo" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="238.0" sortable="false" text="Due date">
+                    <cellValueFactory>
+                        <RecordValueFactory value="dueDate" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="97.0" sortable="false" text="Priority">
+                    <cellValueFactory>
+                        <StatusValueFactory value="priority" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+      <Pagination fx:id="pageList" />
+    </VBox>
+    <Button fx:id="addIncident" alignment="BOTTOM_LEFT" text="New Incident" AnchorPane.bottomAnchor="10" AnchorPane.rightAnchor="10">
+        <graphic>
+            <FontIcon iconLiteral="mdal-add" />
+        </graphic>
+        <cursor>
+            <Cursor fx:constant="HAND" />
+        </cursor>
+    </Button>
+</AnchorPane>

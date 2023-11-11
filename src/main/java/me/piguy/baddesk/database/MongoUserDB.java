@@ -11,28 +11,10 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 public class MongoUserDB implements Database {
-    String connectionString = "mongodb+srv://humongous:dick_it_is_dick_lol@cluster0.ucb1vyk.mongodb.net/?retryWrites=true&w=majority";
+    // I totally did not do an oppsie here
+    String connectionString = "";
 
     @Override
     public void get() {
-        ServerApi serverApi = ServerApi.builder()
-                .version(ServerApiVersion.V1)
-                .build();
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(connectionString))
-                .serverApi(serverApi)
-                .build();
-        // Create a new client and connect to the server
-        try (MongoClient mongoClient = MongoClients.create(settings)) {
-            try {
-                // Send a ping to confirm a successful connection
-                MongoDatabase database = mongoClient.getDatabase("project");
-                database.runCommand(new Document("ping", 1));
-                System.out.println("Pinged your deployment. You successfully connected to MongoDB!");
-            } catch (MongoException e) {
-                e.printStackTrace();
-            }
-        }
-
     }
 }
