@@ -30,6 +30,11 @@ public class TestLocalAPI implements ApiAdapter {
     }
 
     @Override
+    public ArrayList<HashMap<String, Object>> getTickets(int page) {
+        return null;
+    }
+
+    @Override
     public Boolean deleteTicket(String id) {
         return null;
     }

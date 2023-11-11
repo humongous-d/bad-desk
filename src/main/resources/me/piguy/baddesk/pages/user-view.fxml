@@ -18,23 +18,11 @@
         </CustomTextField>
         <TableView fx:id="ticketsTable" editable="true">
             <columns>
-                <TableColumn text="ID">
-                    <cellValueFactory>
-                        <RecordValueFactory value="id"/>
-                    </cellValueFactory>
+                <TableColumn text="Name">
                 </TableColumn>
-                <TableColumn text="Subject">
-                    <cellValueFactory>
-                        <RecordValueFactory value="subject"/>
-                    </cellValueFactory>
+                <TableColumn text="email">
                 </TableColumn>
-                <TableColumn text="User">
-
-                </TableColumn>
-                <TableColumn text="Date">
-
-                </TableColumn>
-                <TableColumn text="Status">
+                <TableColumn text="role">
                 </TableColumn>
             </columns>
         </TableView>

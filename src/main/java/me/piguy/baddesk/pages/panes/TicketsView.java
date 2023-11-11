@@ -27,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import me.piguy.baddesk.pages.panes.Status;
+
 import static me.piguy.baddesk.ConfigurationManager.ITEMS_PER_PAGE;
 
 public class TicketsView implements TabPaneViewController {
@@ -80,7 +81,7 @@ public class TicketsView implements TabPaneViewController {
     }
 
     private void loadData() {
-//        loadExampleData();
+        //loadExampleData();
         loadApiData();
     }
 
@@ -108,6 +109,8 @@ public class TicketsView implements TabPaneViewController {
                     (String) ticket.get("assignee"),
                     (String) ticket.get("attachment")
             ));
+            pageListSetup();
+            sortByPriority();
         }
 
     }
@@ -213,19 +216,40 @@ public class TicketsView implements TabPaneViewController {
         );
     }
 
-    private void refreshTable() {
-        ticketsList.clear();
-        loadData();
-        loadTable();
-    }
-
     private void onEdit(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("task-popup.fxml"));
+        GridPane content;
+        try {
+            content = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        PopupController controller = loader.getController();
+        // Dont set ticket because thats for edit
+        controller.setTicket(ticketsTable.getFocusModel().getFocusedItem());
+        controller.setApi(api);
+        Stage popup = new Stage();
+        Scene scene = new Scene(content, 400, 500);
+        popup.setScene(scene);
+        popup.setTitle("Help");
+        popup.show();
 
+        popup.setOnHidden(
+                (e) -> {
+                    refreshTable();
+                }
+        );
     }
 
     private void onDelete(ActionEvent e) {
         api.deleteTicket(ticketsTable.getFocusModel().getFocusedItem().id());
         refreshTable();
+    }
+
+    private void refreshTable() {
+        ticketsList.clear();
+        loadData();
+        loadTable();
     }
 
     @FXML
