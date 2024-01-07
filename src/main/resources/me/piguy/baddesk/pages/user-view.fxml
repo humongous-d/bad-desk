@@ -16,13 +16,22 @@
                 <FontIcon iconLiteral="mdmz-search"/>
             </left>
         </CustomTextField>
-        <TableView fx:id="ticketsTable" editable="true">
+        <TableView fx:id="usersTable" editable="true">
             <columns>
-                <TableColumn text="Name">
+                <TableColumn prefWidth="246.0" sortable="false" text="Name">
+                    <cellValueFactory>
+                        <RecordValueFactory value="name" />
+                    </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="email">
+                <TableColumn prefWidth="246.0" sortable="false" text="username">
+                    <cellValueFactory>
+                        <RecordValueFactory value="username" />
+                    </cellValueFactory>
                 </TableColumn>
-                <TableColumn text="role">
+                <TableColumn prefWidth="246.0" sortable="false" text="role">
+                    <cellValueFactory>
+                        <RecordValueFactory value="role" />
+                    </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>

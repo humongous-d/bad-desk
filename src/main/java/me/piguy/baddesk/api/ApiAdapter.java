@@ -1,6 +1,7 @@
 package me.piguy.baddesk.api;
 
 import me.piguy.baddesk.models.Ticket;
+import me.piguy.baddesk.models.User;
 import me.piguy.baddesk.pages.panes.Status;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public interface ApiAdapter {
     public boolean resetPassword(String username);
     public String getToken();
 
-    Map<String, Object> currentUser();
+    User currentUser();
 
     // ticket
 
@@ -35,4 +36,5 @@ public interface ApiAdapter {
     Boolean editTicket(Ticket ticket);
 
 
+    ArrayList<HashMap<String, Object>> getUsers();
 }

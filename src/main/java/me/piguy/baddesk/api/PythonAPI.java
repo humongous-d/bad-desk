@@ -1,6 +1,7 @@
 package me.piguy.baddesk.api;
 
 import me.piguy.baddesk.models.Ticket;
+import me.piguy.baddesk.models.User;
 import me.piguy.baddesk.pages.panes.Status;
 
 import java.io.IOException;
@@ -37,14 +38,12 @@ public class PythonAPI implements ApiAdapter {
         Ctx loginResponse;
         try {
             loginRequest = new Request(this, "/token");
-            loginResponse = loginRequest.Post()
-                .DoWithMultipartForm(new HashMap<>() {
-                    {
-                        put("username", username);
-                        put("password", password);
-                    }
-                })
-                .Listen();
+            loginResponse = loginRequest.Post().DoWithMultipartForm(new HashMap<>() {
+                {
+                    put("username", username);
+                    put("password", password);
+                }
+            }).Listen();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -59,22 +58,22 @@ public class PythonAPI implements ApiAdapter {
     }
 
     @Override
-    public Map<String, Object> currentUser() {
+    public User currentUser() {
         // Check who I am
         Request meRequest;
         Ctx meResponse;
         try {
             meRequest = new Request(this, "/users/me");
-            meResponse = meRequest.Get()
-                    .withAuth()
-                    .Do()
-                    .Listen();
+            meResponse = meRequest.Get().withAuth().Do().Listen();
         } catch (IOException e) {
             e.printStackTrace();
-            return new HashMap<>();
+            return null;
         }
 
-        return meResponse.toMap();
+        var map = meResponse.toMap();
+
+        return new User((String) map.get("id"), (String) map.get("username"),
+                (String) map.get("name"), (String) map.get("role"));
     }
 
     @Override
@@ -84,10 +83,7 @@ public class PythonAPI implements ApiAdapter {
 
         try {
             request = new Request(this, "/tickets");
-            response = request.Get()
-                    .withAuth()
-                    .Do()
-                    .Listen();
+            response = request.Get().withAuth().Do().Listen();
         } catch (IOException e) {
             System.out.println("Failed to update ticket");
             return new ArrayList<>();
@@ -102,10 +98,7 @@ public class PythonAPI implements ApiAdapter {
 
         try {
             request = new Request(this, "/tickets/split/" + page);
-            response = request.Get()
-                    .withAuth()
-                    .Do()
-                    .Listen();
+            response = request.Get().withAuth().Do().Listen();
         } catch (IOException e) {
             System.out.println("Failed to update ticket");
             return new ArrayList<>();
@@ -120,11 +113,7 @@ public class PythonAPI implements ApiAdapter {
 
         try {
             request = new Request(this, "/tickets/delete");
-            response = request.Post()
-                    .withAuth()
-                    .AddQuery("id", id)
-                    .Do()
-                    .Listen();
+            response = request.Post().withAuth().AddQuery("id", id).Do().Listen();
         } catch (IOException e) {
             System.out.println("Failed to get tickets");
             e.printStackTrace();
@@ -140,25 +129,36 @@ public class PythonAPI implements ApiAdapter {
         Ctx ticketResponse;
         try {
             ticketRequest = new Request(this, "/tickets/update");
-            ticketResponse = ticketRequest.Post()
-                    .withAuth()
-                    .AddQuery("id", ticket.id())
-                    .DoWithJSON(new HashMap<>() {
-                        {
-                            put("title", ticket.subject());
-                            put("description", ticket.description());
-                            put("attachment", ticket.attachment());
-                            put("assignee", ticket.asignedTo());
-                            put("priority", ticket.priority().ordinal());
-                            put("status", ticket.status().name());
-                        }
-                    })
-                    .Listen();
+            ticketResponse = ticketRequest.Post().withAuth().AddQuery("id", ticket.id()).DoWithJSON(new HashMap<>() {
+                {
+                    put("title", ticket.subject());
+                    put("description", ticket.description());
+                    put("attachment", ticket.attachment());
+                    put("assignee", ticket.asignedTo());
+                    put("priority", ticket.priority().ordinal());
+                    put("status", ticket.status().name());
+                }
+            }).Listen();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
         }
         return true;
+    }
+
+    @Override
+    public ArrayList<HashMap<String, Object>> getUsers() {
+        Request request;
+        Ctx response;
+
+        try {
+            request = new Request(this, "/users");
+            response = request.Get().withAuth().Do().Listen();
+        } catch (IOException e) {
+            System.out.println("Failed to get users");
+            return new ArrayList<>();
+        }
+        return response.toList();
     }
 
     @Override
@@ -168,19 +168,16 @@ public class PythonAPI implements ApiAdapter {
         Ctx ticketResponse;
         try {
             ticketRequest = new Request(this, "/tickets/new");
-            ticketResponse = ticketRequest.Post()
-                    .withAuth()
-                    .DoWithJSON(new HashMap<>() {
-                        {
-                            put("title", title);
-                            put("description", description);
-                            put("attachment", attachment);
-                            put("assignee", assignee);
-                            put("priority", priority);
-                            put("status", status.name());
-                        }
-                    })
-                    .Listen();
+            ticketResponse = ticketRequest.Post().withAuth().DoWithJSON(new HashMap<>() {
+                {
+                    put("title", title);
+                    put("description", description);
+                    put("attachment", attachment);
+                    put("assignee", assignee);
+                    put("priority", priority);
+                    put("status", status.name());
+                }
+            }).Listen();
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -190,17 +187,11 @@ public class PythonAPI implements ApiAdapter {
 
     @Override
     public boolean newTicket(Ticket ticket) {
-        return newTicket(
-                ticket.subject(),
-                ticket.description(),
-                ticket.priority().ordinal(), // Jesus...
-                ticket.status(),
-                ticket.asignedTo(),
-                ticket.attachment()
+        return newTicket(ticket.subject(), ticket.description(), ticket.priority().ordinal(), // Jesus...
+                ticket.status(), ticket.asignedTo(), ticket.attachment()
 
         );
     }
-
 
 
     @Override

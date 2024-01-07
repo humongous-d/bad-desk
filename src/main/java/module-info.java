@@ -21,6 +21,7 @@ module me.piguy.baddesk {
 
     exports me.piguy.baddesk;
     exports me.piguy.baddesk.api;
+    exports me.piguy.baddesk.models;
     exports me.piguy.baddesk.pages;
     exports me.piguy.baddesk.pages.theme;
     exports me.piguy.baddesk.pages.panes;

@@ -1,6 +1,7 @@
 package me.piguy.baddesk;
 
 import me.piguy.baddesk.api.ApiAdapter;
+import me.piguy.baddesk.api.PythonAPI;
 import me.piguy.baddesk.api.TestLocalAPI;
 import me.piguy.baddesk.pages.theme.CupertinoTheme;
 import me.piguy.baddesk.pages.theme.DraculaTheme;
@@ -38,7 +39,7 @@ public class ConfigurationManager {
 
     // All the config goes here
     private ConfigurationManager() {
-        api = new TestLocalAPI();
+        api = new PythonAPI();
 
         addTheme(new NordTheme());
         addTheme(new DraculaTheme());

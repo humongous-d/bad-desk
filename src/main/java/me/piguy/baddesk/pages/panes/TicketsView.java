@@ -17,6 +17,7 @@ import me.piguy.baddesk.ConfigurationManager;
 import me.piguy.baddesk.api.ApiAdapter;
 import me.piguy.baddesk.models.Priority;
 import me.piguy.baddesk.models.Ticket;
+import me.piguy.baddesk.models.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -178,7 +179,10 @@ public class TicketsView implements TabPaneViewController {
                 this::onAddIncident
         );
 
-        contextMenu.getItems().addAll(editItem, deleteItem);
+        User user = api.currentUser();
+        if (user != null && user.role().equals("IT")) {
+            contextMenu.getItems().addAll(editItem, deleteItem);
+        }
 
 
         ticketsTable.setRowFactory(t -> {
